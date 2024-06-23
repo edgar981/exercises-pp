@@ -1,0 +1,100 @@
+[
+    {
+        "name": "Push Pull Legs",
+        "id": "1",
+        "weeksDuration": 4,
+        "weekWorkout": [
+        {
+            "day": "Monday",
+            "exercises": [
+            {
+                "name": "Archer push up",
+                "sets": {
+                "weight": "bodyweight",
+                "reps": 12,
+                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                }
+            },
+            {
+                "name": "High squat",
+                "sets": {
+                "weight": "100",
+                "reps": 8,
+                "nota": "Chest up"
+                }
+            }
+            ]
+        },
+        {
+            "day": "Tuesday",
+            "exercises": [
+            {
+                "name": "Archer push up",
+                "sets": {
+                "weight": "bodyweight",
+                "reps": 12,
+                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                }
+            },
+            {
+                "name": "High squat",
+                "sets": {
+                "weight": "100",
+                "reps": 8,
+                "nota": "Chest up"
+                }
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "name": "Thor workout plan",
+        "id": "2",
+        "weeksDuration": 5,
+        "weekWorkout": [
+        {
+            "day": "Monday",
+            "exercises": [
+            {
+                "name": "Archer push up",
+                "sets": {
+                "weight": "bodyweight",
+                "reps": 12,
+                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                }
+            },
+            {
+                "name": "High squat",
+                "sets": {
+                "weight": "100",
+                "reps": 8,
+                "nota": "Chest up"
+                }
+            }
+            ]
+        },
+        {
+            "day": "Tuesday",
+            "exercises": [
+            {
+                "name": "Archer push up",
+                "sets": {
+                "weight": "bodyweight",
+                "reps": 12,
+                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                }
+            },
+            {
+                "name": "High squat",
+                "sets": {
+                "weight": "100",
+                "reps": 8,
+                "nota": "Chest up"
+                }
+            }
+            ]
+        }
+        ]
+    }
+]
