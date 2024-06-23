@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const mesocycles = JSON.parse(fs.readFileSync('/Users/edgarnavarro/Documents/pp/server/data/mesocycles.json'));
+const mesocycles = JSON.parse(fs.readFileSync(`${__dirname}/../data/mesocycles.json`));
 
 exports.checkID = (req, res, next, val) => {
     if (req.params.id * 1 > mesocycles.length){
@@ -13,7 +13,7 @@ exports.checkID = (req, res, next, val) => {
 }
 
 exports.checkBody = (req, res, next) => {
-    if (!req.body.name || !req.body.duration){
+    if (!req.body.name || !req.body.weeksDuration){
         return res.status(400).json({
             status: 'fail',
             message: 'Missing name or weeks duration'
@@ -23,9 +23,12 @@ exports.checkBody = (req, res, next) => {
 }
 
 exports.getAllMesocycles = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
+    res.status(200).json({
+        status: 'success',
+        results: mesocycles.length,
+        data: {
+            mesocycles
+        }
     });
 }
 

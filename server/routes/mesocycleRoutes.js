@@ -8,12 +8,12 @@ router.param('id', mesocycleController.checkID);
 router
     .route('/')
     .get(mesocycleController.getAllMesocycles)
-    .post(mesocycleController.createMesocycle); //Checkbody middleware?
+    .post(mesocycleController.checkBody, mesocycleController.createMesocycle); 
 
 router
     .route('/:id')
     .get(mesocycleController.getMesocycle)
-    .patch(mesocycleController.updateMesocycle)
+    .put(mesocycleController.updateMesocycle)
     .delete(mesocycleController.deleteMesocycle);
 
 module.exports = router;

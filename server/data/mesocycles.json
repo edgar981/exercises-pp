@@ -7,43 +7,43 @@
         {
             "day": "Monday",
             "exercises": [
-            {
-                "name": "Archer push up",
-                "sets": {
-                "weight": "bodyweight",
-                "reps": 12,
-                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                {
+                    "name": "Archer push up",
+                    "sets": {
+                        "weight": "bodyweight",
+                        "reps": 12,
+                        "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                    }
+                },
+                {
+                    "name": "High squat",
+                    "sets": {
+                        "weight": "100",
+                        "reps": 8,
+                        "nota": "Chest up"
+                    }
                 }
-            },
-            {
-                "name": "High squat",
-                "sets": {
-                "weight": "100",
-                "reps": 8,
-                "nota": "Chest up"
-                }
-            }
             ]
         },
         {
             "day": "Tuesday",
             "exercises": [
-            {
-                "name": "Archer push up",
-                "sets": {
-                "weight": "bodyweight",
-                "reps": 12,
-                "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                {
+                    "name": "Archer push up",
+                    "sets": {
+                    "weight": "bodyweight",
+                    "reps": 12,
+                    "nota": "Contraer el abdomen y estabilizar hacia adelante"
+                    }
+                },
+                {
+                    "name": "High squat",
+                    "sets": {
+                    "weight": "100",
+                    "reps": 8,
+                    "nota": "Chest up"
+                    }
                 }
-            },
-            {
-                "name": "High squat",
-                "sets": {
-                "weight": "100",
-                "reps": 8,
-                "nota": "Chest up"
-                }
-            }
             ]
         }
         ]

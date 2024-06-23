@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const exercises = JSON.parse(fs.readFileSync('/Users/edgarnavarro/Documents/pp/server/data/exercises.json'));
+const exercises = JSON.parse(fs.readFileSync(`${__dirname}/../data/exercises.json`));
 
 exports.getAllExercises = (req, res) => {
     res.status(200).json({ 
