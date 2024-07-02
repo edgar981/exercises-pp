@@ -1,7 +1,6 @@
 [
     {
         "name": "Push Pull Legs",
-        "id": "1",
         "weeksDuration": 4,
         "weekWorkout": [
         {
@@ -50,7 +49,6 @@
     },
     {
         "name": "Thor workout plan",
-        "id": "2",
         "weeksDuration": 5,
         "weekWorkout": [
         {

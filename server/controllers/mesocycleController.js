@@ -1,61 +1,143 @@
-const fs = require('fs');
+const Mesocycle = require('./../models/mesocycleModel');
 
-const mesocycles = JSON.parse(fs.readFileSync(`${__dirname}/../data/mesocycles.json`));
+// const mesocycles = JSON.parse(fs.readFileSync(`${__dirname}/../data/mesocycles.json`));
 
-exports.checkID = (req, res, next, val) => {
-    if (req.params.id * 1 > mesocycles.length){
-        return res.status(404).json({
+exports.getAllMesocycles = async (req, res) => {
+    try {
+        const mesocycles = await Mesocycle.find();
+
+        // if(req.query.sort) {
+        //     const sortBy = req.query.sort.split(',').join(' ');
+        //     query = query.sort(sortBy);
+        // } 
+        // else {
+        //     query = query.sort('-createdAt');
+        // }
+
+        res.status(200).json({
+            status: 'success',
+            results: mesocycles.length,
+            data: {
+                mesocycles
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
             status: 'fail',
-            message: 'Invalid ID'
+            message: error,
         });
     }
-    next();
 }
 
-exports.checkBody = (req, res, next) => {
-    if (!req.body.name || !req.body.weeksDuration){
-        return res.status(400).json({
+exports.getMesocycle = async (req, res) => {
+    try {
+        const mesocycle = await Mesocycle.findById(req.params.id);
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                mesocycle
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
             status: 'fail',
-            message: 'Missing name or weeks duration'
+            message: error,
+        });
+    }
+}
+
+exports.createMesocycle = async (req, res) => {
+    try {
+        const newMesocycle = await Mesocycle.create(req.body);
+
+        res.status(201).json({
+            status: 'success',
+            data: {
+                mesocycle: newMesocycle
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error,
         })
     }
-    next();
 }
 
-exports.getAllMesocycles = (req, res) => {
-    res.status(200).json({
-        status: 'success',
-        results: mesocycles.length,
-        data: {
-            mesocycles
+exports.updateMesocycle = async (req, res) => {
+    try{
+        // const mesocycle = await Mesocycle.findOneAndUpdate(req.params.id, req.body, {
+        const mesocycle = await Mesocycle.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+
+        if (!mesocycle) {
+            return res.status(404).send({ message: 'Mesocycle not found' });
         }
-    });
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                mesocycle
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error,
+        });
+    }
 }
 
-exports.getMesocycle = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
-    });
+exports.deleteMesocycle = async (req, res) => {
+    try {
+        await Mesocycle.findByIdAndDelete(req.params.id);
+    
+        res.status(204).json({
+            status: 'success',
+            message: null
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error
+        });
+    }
 }
 
-exports.createMesocycle = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
-    });
-}
+exports.updateDaysExercise = async (req, res) => {
+    try {
+        const exercise = await Mesocycle.findOneAndUpdate({
+                _id: req.params.id,
+        },
+        {
+            $set: {
+                'weekWorkout.$[dayElem].exercises.$[exerciseElem].name': req.body.name
+            }
+        },
+        {
+            arrayFilters: [
+                { 'dayElem._id': req.params.dayId },
+                { 'exerciseElem._id': req.params.dayWorkoutId }
+            ],
+            new: true,
+            runValidators: true
+        });
 
-exports.updateMesocycle = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
-    });
-}
+        if (!exercise) {
+            return res.status(404).send({ message: 'Exercise not found' });
+        }
 
-exports.deleteMesocycle = (req, res) => {
-    res.status(204).json({
-        status: 'success',
-        message: null
-    });
+        res.status(204).json({
+            status: 'success',
+            data: null
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error
+        });
+    }
 }
