@@ -3,23 +3,24 @@ const mongoose = require('mongoose');
 const setSchema = new mongoose.Schema({
     weight: {
         type: String,
-        required: [true, 'Must specify the weight']
+        default: '0',
     },
     reps: {
         type: Number,
-        required: [true, 'Must specify the number of reps']
+        default: 0,
     },
     note: {
         type: String,
         trim: true,
     }
-});
+}); //Maybe needed the  { _id: false }
 
 const exerciseSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Must have an exercise name'],
         trim: true,
+        maxlength: [30, 'An exercise must have less or equal than 30 characters'],
     },
     sets: {
         type: setSchema,
@@ -31,6 +32,7 @@ const dayWorkoutSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Must have a label day'],
         trim: true,
+        maxlength: [10, 'A day must have less or equal than 10 characters'],
     },
     exercises: {
         type: [exerciseSchema],
@@ -49,6 +51,7 @@ const mesocycleSchema = new mongoose.Schema({
         type: String,
         required: [true, 'A mesocycle must have a name'],
         trim: true,
+        maxlength: [30, 'A mesocycle must have less or equal than 30 characters'],
     },
     weeksDuration: {
         type: Number,

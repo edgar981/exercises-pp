@@ -67,7 +67,6 @@ exports.createMesocycle = async (req, res) => {
 
 exports.updateMesocycle = async (req, res) => {
     try{
-        // const mesocycle = await Mesocycle.findOneAndUpdate(req.params.id, req.body, {
         const mesocycle = await Mesocycle.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
@@ -109,7 +108,7 @@ exports.deleteMesocycle = async (req, res) => {
 
 exports.updateDaysExercise = async (req, res) => {
     try {
-        const exercise = await Mesocycle.findOneAndUpdate({
+        const exercise = await Mesocycle.findByIdAndUpdate({
                 _id: req.params.id,
         },
         {
@@ -123,7 +122,7 @@ exports.updateDaysExercise = async (req, res) => {
                 { 'exerciseElem._id': req.params.dayWorkoutId }
             ],
             new: true,
-            runValidators: true
+            runValidators: true,
         });
 
         if (!exercise) {
@@ -133,6 +132,39 @@ exports.updateDaysExercise = async (req, res) => {
         res.status(204).json({
             status: 'success',
             data: null
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error
+        });
+    }
+}
+
+exports.updateSetsInfo = async (req, res) => {
+    try {
+        const result = await Mesocycle.findByIdAndUpdate({
+            _id: req.params.id,
+        },
+        {
+            $set: {
+                'weekWorkout.$[dayElem].exercises.$[exerciseElem].sets': req.body
+            }
+        },
+        {
+            arrayFilters: [
+                { 'dayElem._id': req.params.dayId },
+                { 'exerciseElem._id': req.params.dayWorkoutId },
+            ],
+            new: true,
+            runValidators: true,
+        });
+
+        res.status(204).json({
+            status: 'success',
+            data: {
+                result
+            }
         });
     } catch (error) {
         res.status(400).json({

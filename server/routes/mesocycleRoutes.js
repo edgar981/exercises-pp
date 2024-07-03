@@ -20,4 +20,8 @@ router
     .route('/:id/exercises/:dayId/:dayWorkoutId')
     .patch(mesocycleController.updateDaysExercise);
 
+router
+    .route('/:id/exercises/:dayId/:dayWorkoutId/sets/')
+    .patch(mesocycleController.updateSetsInfo);    
+
 module.exports = router;
